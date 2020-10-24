@@ -199,8 +199,9 @@ def yyy():
     yield 4
     yield 5
 
-y=yyy()   #定义生成器
+y=yyy()   #定义生成器  1、y=function()  2、y()
 print(y)    #<generator object yyy at 0x7fe94b6bdba0>
+#协程
 print(next(y))
 print(next(y))
 print(next(y))
@@ -238,3 +239,17 @@ class T():
 print(T)    #<class '__main__.T'>
 t=T()
 print(t)    #<__main__.T object at 0x7f18d4433400>
+
+def zzz():
+    print("zzz")
+    z=yield 2
+    print(z)
+    z = yield 3
+    print(z)
+    z = yield 4
+    print(z)
+
+
+z=zzz()
+print(next(z))
+print(next(z))

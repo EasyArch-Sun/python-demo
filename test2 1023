@@ -1,0 +1,28 @@
+python 本质是hashmap(__dict__)
+
+java面向对象：
+    定义式
+    集合式
+    组合式
+面向对象本质：
+    一块内存
+
+java组合式：
+    class Person extends Hashmap{
+    }
+
+    Person p=new Person():
+    p.put("name","xxx");
+    p.put("age",12);
+继承：
+    java：
+        class A{
+        }
+
+        class B extends A{
+
+        }
+    c：
+        class TT{
+            A a;
+        }
