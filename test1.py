@@ -192,6 +192,7 @@ print(ops1(lambda a,b:a-b,7,2))
 
 
 # 生成器  断点函数 generator
+#yeild 往下走的方法：next/send/ try catch的throw exception
 def yyy():
     yield 1
     yield 2

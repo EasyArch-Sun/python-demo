@@ -63,8 +63,8 @@ print(vars(t))
 class T4:
     def xxx(self):
         print("xxx")
-    def xxx(self,xxx):
-        print("yyy",x)
+#    def xxx(self,xxx):
+#        print("yyy",x)
 
 #t=T4()
 #t.xxx()
@@ -99,3 +99,4 @@ def ff():
     print("xxx")
 
 fun2(ff)
+
