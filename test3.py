@@ -153,4 +153,24 @@ def test11():
 
 decorate(decoratex(test11))()
 
-print("="*50)
+print("="*50+"3")
+
+#==============================
+def decorate(protocol,port):
+    def servlet(func):
+        def service(arg):
+            print("协议:"+protocol+"端口:"+port)
+            func(arg)
+        return service
+    return servlet
+
+@decorate(protocol="http1.1",port="30000")
+def test(arg):
+    print("服务是",arg)
+
+test("tcp服务")
+
+decorate(protocol="http2.0",port="30001")(test(arg="udp服务"))
+
+print("="*50+"4")
+#===================================

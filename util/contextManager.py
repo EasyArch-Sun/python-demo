@@ -65,20 +65,6 @@ with foo(MyException),Res("withtest")  as tmp:
 print("end!!")
 
 #柯理化
-def decorate(name):
-    def wrapper(func):
-        def sub_wrapper(arg):
-            print("定义一个带参数的装饰器",name)
-            func(arg)
-        return sub_wrapper
-    return wrapper
 
-@decorate(name="python")
-def text1(arg):
-    print("text1",arg)
-
-text1("xxx")
-
-print("="*50+"6")
 
 
