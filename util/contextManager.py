@@ -81,16 +81,4 @@ text1("xxx")
 
 print("="*50+"6")
 
-def Protocol(protocol):
-    def temp(func):
-        def sub_temp(arg):
-            print("用http协议",protocol)
-            func(arg)
-        return sub_temp
-    return temp
 
-@Protocol(protocol="http协议")
-def user(arg):
-    print("user",arg)
-
-user("xxx")

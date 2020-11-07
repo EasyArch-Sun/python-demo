@@ -41,9 +41,116 @@ print(C1.__mro__)
 print(C1.__base__)
 
 
-class A1:
-    def xxx(self):
-        pass
+def Protocol(protocol):
+    def temp(func):
+        def sub_temp(arg):
+            print("用http协议",protocol)
+            func(arg)
+        return sub_temp
+    return temp
 
-class B1:
-    pass
+@Protocol(protocol="http协议")
+def user(arg):
+    print("user",arg)
+
+user("xxx")
+
+print("="*50+"11")
+#=================四层==================
+def decorate1(func):
+    def wrapper():
+        func
+    return wrapper
+
+def decorate2(name):
+    def wrapper(func):
+        print("second",name)
+        func()
+    return wrapper
+
+def decorate3(func):
+    def wrapper():
+        func
+    return wrapper
+
+def decorate4(name4):
+    def wrapper(func):
+        print("forth",name4)
+        func()
+    return wrapper
+
+@decorate1
+@decorate2(name="java")
+@decorate3
+@decorate4(name4="python")
+def test1():
+    print("lllll")
+
+test1()
+
+
+print("="*50+"21")
+
+def decorate11(func):
+    def wrapper():
+        func
+    return wrapper
+
+def decorate22(name2):
+    def wrapper(func):
+        print("second",name2)
+        func
+    return wrapper
+
+def decorate33(func):
+    def wrapper():
+        func
+    return wrapper
+
+def decorate44(name4):
+    def wrapper(func):
+        print("forth",name4)
+        func
+    return wrapper
+
+def test12():
+    print("222222")
+
+decorate11(decorate22(name2="java")(decorate33(decorate44(name4="python")(test12()))))
+print("="*50+"22")
+#==================================
+def decorate(func):
+    def wrapper():
+        func()
+    return wrapper
+
+def decoratex(func):
+    def wrapper():
+        func()
+    return wrapper
+
+@decorate
+@decoratex
+def test11():
+    print("lllll")
+
+test11()
+
+
+
+def decorate(func):
+    def wrapper():
+        func()
+    return wrapper
+
+def decoratex(func):
+    def wrapper():
+        func()
+    return wrapper
+
+def test11():
+    print("lllll")
+
+decorate(decoratex(test11))()
+
+print("="*50)
