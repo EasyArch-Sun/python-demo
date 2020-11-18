@@ -1,3 +1,7 @@
+from abc import ABCMeta, abstractmethod
+from functools import total_ordering
+
+
 class Z:
     def __init__(self,a):
         self.__a=a
@@ -174,3 +178,76 @@ decorate(protocol="http2.0",port="30001")(test(arg="udp服务"))
 
 print("="*50+"4")
 #===================================
+
+class Person:
+    def __init__(self,id,name):
+        self.__id=id
+        self.__name=name
+
+    def __str__(self):
+        return "id:"+str(self.__id)+"name:"+str(self.__name)
+
+class Stu(Person):
+    def __init__(self,id,name,score):
+        super().__init__(id,name)
+        self.__score=score
+
+    def __str__(self):
+        return "score:" + str(self.__score)
+
+if __name__=="__main__":
+    p=Person(1,"aaa")
+    print(p)
+
+    s=Stu(2,"bbb",54)
+    print(s)
+
+
+print("="*40+"1")
+#===================================
+
+class Person(metaclass=ABCMeta):
+    def __init__(self, id, name):
+        self.__id = id
+        self.__name = name
+
+    def __str__(self):
+        return "id:" + str(self.__id) + "name:" + str(self.__name)
+
+    @abstractmethod
+    def run(self):
+        pass
+
+@total_ordering
+class Stu(Person):
+    def __init__(self, id, name, score):
+        super().__init__(id, name)
+        self.__score = score
+
+    def __str__(self):
+        return "score:" + str(self.__score)
+
+    def run(self):
+        print("stu running....")
+
+    def __gt__(self, other):
+        return self.__score > other.__score
+
+    def __eq__(self, other):
+        return self.__score == other.__score
+
+
+if __name__ == "__main__":
+
+    s1 = Stu(2, "bbb", 54)
+    print(s1)
+    s1.run()
+
+    s2=Stu(3,"ccc",65)
+
+    print(s1 > s2)
+    print(s1 <= s2)
+    print(s1 == s2)
+
+print("=" * 40 + "2")
+
