@@ -1,0 +1,41 @@
+1、_call_ 运算符
+
+【用a修饰b，a本身就是一个用b作为参数的函数，并且返回值也是b】
+函数修饰类
+
+函数：普通函数，静态方法，构造方法，普通方法
+
+
+装饰器==代理
+
+[表达式有返回值，语句没有返回值]
+eval:解释执行表达式
+exec:解释执行语句或代码块
+
+
+假继承,分配内存
+class T:
+        def __new__():
+            super().__new__()
+
+metaclass类加载器,必须继承自type
+有三个方法new，init，call
+
+inspect
+
+
+compile(代码，文件名，执行器)
+执行器：eval(表达式) single(可执行语句) exec(可执行语句组)
+
+通过compile编译出来的是字节码
+
+code_obj.co_code
+print.dis(code_obj)#清晰打印
+
+
+
+python并发
+
+gil 全局解释器锁
+
+py单线程，无多核
