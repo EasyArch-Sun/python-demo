@@ -1,0 +1,45 @@
+
+AF开头,常规网络套接字
+AF_INET socket.SOCK_STREAM[tcp]  SOCK_DGRAM [udp]  SOCK_RAW [套接字]
+AF_INET6
+PF_PACKET(三层以下)  SOCK_RAW   SOCK_DGRAM
+
+
+mac地址(6字节 xx:xx:xx:xx:xx:xx)
+单播
+组播
+广播 ff ff ff ff ff ff
+
+
+用户态
+    数据段
+    api-syscall 代码段
+    c库
+
+内核
+    etho
+        内核协议栈
+        bpf(ebpf)[jit解释器] 通过内核映射或者通过ring_buf映射成普通array内存，传到 用户态
+      通过二层解包，成为sock_buf,达到三层解包，二三层，三n层之间有短路，作为防火墙，三层以上分为tcp/udp
+    ring_buf
+
+硬件层
+    网卡：混杂模式 过滤模式
+        xdp 将网卡数据在内核形成环形ring_buf,ring_buf将数据上升到用户态(0拷贝（最原始的包）)
+        rdma技术 硬件中封装了tcp ip协议栈，讲xdp的数据直接封装
+    防火墙
+
+
+旁路  sidewalk 绕开+信息复制  而非拦截
+
+rdma
+dpdk 不解包，直接将包扔到用户态去解析
+
+epoll
+    偶发事件 不可丢数据
+    频发事件 可丢 处理接受的调度得快，可以有延时但处理过程
+
+    ET  沿触发 偶发
+    LT  水平触发 频发
+
+
